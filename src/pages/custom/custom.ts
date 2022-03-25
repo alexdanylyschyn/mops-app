@@ -1,18 +1,62 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { FormBuilder, FormArray, FormGroup, Validators } from '@angular/forms';
+
+
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-custom',
+  templateUrl: 'custom.html'
 })
-export class HomePage {
+export class Custom {
+
+  public form   : FormGroup;
+
+  options;
 
   delay = 700;
   clicks = 0;
   timer = null;
   night = null;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private _FB: FormBuilder) {
+    this.form = this._FB.group({
+      name: ['', Validators.required],
+      options: this._FB.array([
+         this.initOptionFields()
+      ])
+   });
+  }
+
+  initOptionFields() : FormGroup
+  {
+     return this._FB.group({
+        name : ['', Validators.required]
+     });
+  }
+
+  addNewInputField() : void
+  {
+     const control = <FormArray>this.form.controls.options;
+     control.push(this.initOptionFields());
+  }
+
+  removeInputField(i : number) : void
+  {
+     const control = <FormArray>this.form.controls.options;
+     control.removeAt(i);
+  }
+
+  manage(val : any) : void
+  {
+
+    console.log(val);
+
+     this.options = val;
+
+    console.log(this.options);
+
+     this.reset();
   }
 
   wakeUp(event) {
@@ -87,15 +131,15 @@ export class HomePage {
 
   decide() {
 
-  	let choice = Math.floor(Math.random() * Math.floor(100));
+  	let choice = Math.floor(Math.random() * Math.floor(this.options.options.length));
 
-  	if( choice < 49 ) {
-  		return "Ja";
-  	} else if( choice > 48 && choice < 99) {
-  		return "Nein";
-  	} else {
-  		return "Vielleicht";
-  	}
+    console.log(choice);
 
+    return this.options.options[choice].name;
+  }
+
+  reset() {
+     document.querySelector('#decide-wrap').classList.toggle('hidden');
+     document.querySelector('#mops-form').classList.toggle('hidden');
   }
 }

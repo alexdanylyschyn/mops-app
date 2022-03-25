@@ -1,4 +1,4 @@
-page-home {
+page-custom {
 
 
 	@keyframes sleepy {
@@ -27,6 +27,15 @@ page-home {
 			opacity: 0;
 		}
 
+	}
+
+	#logo {
+		max-height: 2rem;
+		display: block;
+	}
+
+	.hidden {
+		display: none;
 	}
 
 	#input-wrap {
@@ -139,5 +148,14 @@ page-home {
 			background-image: url(../assets/imgs/mops-frame-3.jpg);
 			z-index: -4;
 		}
+	}
+
+	.button-wrap {
+		position: absolute;
+		z-index: 1;
+		bottom: 4rem;
+		left: 0;
+		right: 0;
+		text-align: center;
 	}
 }

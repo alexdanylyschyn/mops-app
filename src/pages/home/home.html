@@ -1,14 +1,29 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Ja oder Nein?</ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+	<div id="input-wrap" (click)="wakeUp();" (dblclick)="decide();">
+	</div>
+  <div id="sleepy">
+  	<span class="z" id="z-1">Z</span>
+  	<span class="z" id="z-2">Z</span>
+   	<span class="z" id="z-3">Z</span>
+   	<span class="z" id="z-4">Z</span>
+  </div>
+  <div id="bubble-wrap" class="hide">
+  	<div class="bubble">
+  		<span class="message">
+  		</span>
+  	</div>
+  </div>
+  <div id="mops-wrap">
+  	<div id="mops-frame-1" class="mops-frame" ></div>
+  	<div id="mops-frame-2" class="mops-frame" ></div>
+  	<div id="mops-frame-3" class="mops-frame"></div>
+  </div>
 </ion-content>
